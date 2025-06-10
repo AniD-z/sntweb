@@ -1,8 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/podcasts/page": "app/podcasts/page.js",
-  "/magazine/page": "app/magazine/page.js",
-  "/authors/[author]/page": "app/authors/[author]/page.js",
-  "/authors/page": "app/authors/page.js",
-  "/podcasts/[title]/page": "app/podcasts/[title]/page.js"
-}
