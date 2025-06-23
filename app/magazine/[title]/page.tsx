@@ -4,23 +4,29 @@ import SocialSharing from "@/components/SocialSharing";
 import Subheading from "@/components/Subheading";
 import Link from "next/link";
 
+// If your Next.js version sends params as a Promise, you must await it.
+// So we type params as Promise<{ title: string }> and await it inside.
 export async function generateMetadata({
   params,
 }: {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }) {
+  const { title } = await params; // await here and destructure
+
   const articles: ArticleType[] = await getArticles();
 
   const articleData = articles.find((article) =>
-    article.articles.find((articleItem) => articleItem.slug === params.title)
+    article.articles.find((articleItem) => articleItem.slug === title)
   );
 
   if (!articleData) {
-    return <p>Article not found</p>;
+    return {
+      title: "Article not found",
+    };
   }
 
   const matchingArticle = articleData.articles.find(
-    (articleItem) => articleItem.slug === params.title
+    (articleItem) => articleItem.slug === title
   );
 
   return {
@@ -31,13 +37,15 @@ export async function generateMetadata({
 export default async function ArticleDetails({
   params,
 }: {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }) {
+  const { title } = await params; // await here too and destructure
+
   try {
     const articles: ArticleType[] = await getArticles();
 
     const articleData = articles.find((article) =>
-      article.articles.find((articleItem) => articleItem.slug === params.title)
+      article.articles.find((articleItem) => articleItem.slug === title)
     );
 
     if (!articleData) {
@@ -45,7 +53,7 @@ export default async function ArticleDetails({
     }
 
     const matchingArticle = articleData.articles.find(
-      (articleItem) => articleItem.slug === params.title
+      (articleItem) => articleItem.slug === title
     );
 
     const latestArticles = articles
@@ -60,7 +68,7 @@ export default async function ArticleDetails({
     if (!matchingArticle) {
       return (
         <main className="max-w-[95rem] w-full mx-auto px-4 sm:pt-4 xs:pt-2 lg:pb-4 md:pb-4 sm:pb-2 xs:pb-2">
-          <p>Article not found</p>;
+          <p>Article not found</p>
         </main>
       );
     }
@@ -74,10 +82,7 @@ export default async function ArticleDetails({
         </article>
 
         <div>
-          <img
-            src={matchingArticle.content[0].img}
-            alt={matchingArticle.imgAlt}
-          />
+          <img src={matchingArticle.content[0].img} alt={matchingArticle.imgAlt} />
         </div>
       </main>
     );
