@@ -9,21 +9,25 @@ export default function Articles() {
   const { data } = useArticleContext();
   const [selectedLabel, setSelectedLabel] = useState("All");
 
-  if (!data) return <p>Loading articles...</p>;
-
-  const labels = useMemo(
-    () => [
+  // Ensure hooks are always called unconditionally
+  const labels = useMemo(() => {
+    if (!data) return ["All"];
+    return [
       "All",
       ...new Set(data.flatMap((article) => article.articles.map((item) => item.label))),
-    ],
-    [data]
-  );
+    ];
+  }, [data]);
 
-  const filteredArticles = data.flatMap((article) =>
-    article.articles.filter((item) =>
-      selectedLabel === "All" ? true : selectedLabel === item.label
-    )
-  );
+  const filteredArticles = useMemo(() => {
+    if (!data) return [];
+    return data.flatMap((article) =>
+      article.articles.filter((item) =>
+        selectedLabel === "All" ? true : selectedLabel === item.label
+      )
+    );
+  }, [data, selectedLabel]);
+
+  if (!data) return <p>Loading articles...</p>;
 
   return (
     <div className="max-w-[95rem] w-full mx-auto">
@@ -45,7 +49,7 @@ export default function Articles() {
             <div className="flex items-center justify-between">
               <time dateTime={articleData.date}>{articleData.date}</time>
             </div>
-            <Link href={`magazine/${articleData.slug}`}>
+            <Link href={`/magazine/${articleData.slug}`}>
               <img
                 className="w-full my-8 hover:scale-105 transition"
                 src={articleData.img}
