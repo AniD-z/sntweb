@@ -5,11 +5,11 @@ import Link from "next/link";
 export default function PopularArticles() {
   const { data } = useArticleContext();
 
-  const popularArticles = data.flatMap((author) =>
-    author.articles
-      .filter((article) => article.popular === true)
-      .sort((a, b) => Number(a.popularity) - Number(b.popularity))
-  );
+
+  const popularArticles = data
+    .flatMap((entry) => entry.articles) 
+    .filter((article) => article.popular === true)
+    .sort((a, b) => Number(a.popularity) - Number(b.popularity));
 
   return (
     <article>
@@ -22,10 +22,7 @@ export default function PopularArticles() {
               <h3 className="text-2xl font-semibold">
                 <Link href={`/magazine/${article.slug}`}>{article.title}</Link>
               </h3>
-              <span className="flex gap-2">
-                <p className="font-semibold">Text</p>
-                <p>{data[0].author}</p>
-              </span>
+            
             </article>
           </div>
           {index < popularArticles.length - 1 && (

@@ -23,7 +23,7 @@ export default function Articles() {
       )
       .map((item) => ({
         ...item,
-        author: article.author,
+        
       }))
   );
 

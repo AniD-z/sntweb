@@ -34,7 +34,6 @@ export default function Footer() {
           <nav aria-label="middle-footer-links">
             <ul className="space-y-2">
               <li><Link href="/magazine">work</Link></li>
-              <li><Link href="/authors">companies</Link></li>
             </ul>
           </nav>
           <nav aria-label="right-footer-links">

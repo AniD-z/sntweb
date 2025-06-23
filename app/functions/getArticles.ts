@@ -1,6 +1,5 @@
 export type ArticleType = {
   id: number;
-  author: string;
   job: string;
   city: string;
   avatar: string;
