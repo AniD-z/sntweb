@@ -1,7 +1,3 @@
-import Authors from "@/components/Authors/Authors";
-
-
-import AuthorsLoading from "@/components/Authors/loading";
 
 import PageTitle from "@/components/PageTitle";
 import Subheading from "@/components/Subheading";
@@ -28,14 +24,7 @@ export default function Home() {
 
       
 
-      <Subheading
-        className="text-subheading"
-        url="/authors"
-        linkText="All authors"
-      >
-        Partners
-      </Subheading>
-
+     
       
     </main>
   );
