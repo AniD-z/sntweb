@@ -1,14 +1,19 @@
 export type ArticleType = {
   id: number;
+  author?: string;  // add this field
   job: string;
   city: string;
   avatar: string;
   imgAlt: string;
   slug: string;
+  biography?: {     // add this field too if present
+    summary: string;
+    body: string;
+  };
   articles: Array<{
     title: string;
     popular: boolean;
-    popularity: number;
+    popularity?: number;  // make optional if missing sometimes
     description: string;
     date: string;
     read: string;
@@ -27,14 +32,9 @@ export type ArticleType = {
   }>;
 };
 
-export async function getArticles() {
-  const res = await fetch(
-    "https://github.com/AniD-z/sntweb/blob/main/json/articles.json"
-  );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch article data");
-  }
+import articles from "@/json/articles.json";
 
-  return res.json();
+export async function getArticles(): Promise<ArticleType[]> {
+  return articles as unknown as ArticleType[];
 }
