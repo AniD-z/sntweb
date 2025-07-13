@@ -1,6 +1,4 @@
 
-import PageTitle from "@/components/PageTitle";
-import Subheading from "@/components/Subheading";
 import { Suspense } from "react";
 import AboutSection from "@/components/aboutus"
 import CollectionSection from "@/components/collection"

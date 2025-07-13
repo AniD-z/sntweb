@@ -8,11 +8,11 @@ export type MenuItem = {
 const menu: MenuItem[] = [
   {
     href: "/", 
-    label: "About us",
+    label: "Our Story",
   },
   {
-    href: "/magazine",
-    label: "Materials",
+    href: "/what-we-offer",
+    label: "What We Offer",
   },
   {
     href: "", // This is just a placeholder
