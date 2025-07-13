@@ -46,9 +46,9 @@ function SocialResponsibilitySection() {
             SUSTAINABILITY IS AT THE CORE OF WHAT WE DO
           </h3>
           <p className="text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We have one world and that is our duty to protect the world. As a brand you don't have to choose between
-            purpose and profit, you can do both - and we're here to design a for you, end to end.
-          </p>
+  We have one world and that is our duty to protect the world. As a brand you don&rsquo;t have to choose between
+  purpose and profit, you can do both – and we&rsquo;re here to design a for you, end to end.
+</p>
         </motion.div>
 
         {/* Main Content */}
