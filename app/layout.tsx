@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 import ArticleContextProvider from "@/context/ArticleContext";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             <Container>
               <Header />
               {children}
+              <Analytics />
               <Footer />
             </Container>
         </ArticleContextProvider>
